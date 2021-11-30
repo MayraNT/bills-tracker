@@ -1,10 +1,14 @@
+import React from "react";
+import Router from "./Router";
+import { BrowserRouter } from "react-router-dom";
+
 // import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <p>Hello Bills Tracker App!</p>
-    </div>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   );
 }
 
