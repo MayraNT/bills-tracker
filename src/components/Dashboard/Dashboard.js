@@ -1,78 +1,40 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { useState, useEffect } from "react-dom";
+import React from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import BillsTable from "../BillsTable/BillsTable";
+import AddBill from "../AddBill/AddBill";
 
 const URL = "https://bills-api-l88zfqgi7-mayrant.vercel.app/api";
-// const invocation = new XMLHttpRequest();
 
-// attempt with class based component
-class Dashboard extends Component {
-  constructor(props) {
-    super(props);
+const Dashboard = () => {
+  const [bills, setBills] = useState([]);
 
-    this.state = {
-      bills: [],
-    };
-  }
+  const fetchBills = useCallback(async () => {
+    const response = await axios(`${URL}/bills`);
+    setBills(response.data);
+  }, []);
 
-  componentDidMount() {
-    // function getBills() {
-    //   axios.get(`${URL}/bills`).then((res) => {
-    //     const bills = res.data;
-    //     console.log(bills);
-    //     // this.setState({ bills });
-    //   });
-    // };
+  useEffect(() => {
+    fetchBills();
+  }, [fetchBills]);
 
-    // if (invocation) {
-    //   invocation.open("GET", `${URL}/bills`, true);
-    //   invocation.withCredentials = true;
-    //   invocation.onreadystatechange = getBills();
-    //   invocation.send();
-    // }
+  console.log("BILLS list", bills);
 
-    axios.get(`${URL}/bills`).then((res) => {
-      const bills = res.data;
-      console.log(bills);
-      this.setState({ bills });
-    });
-    console.log(this.state.bills)
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Dashboard Component</h1>
-        <ul>
-          {this.state.bills.map((bill, index) => {
-            return <li>bill</li>;
-          })}
-        </ul>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h1>Dashboard Component</h1>
+      <button
+        onClick={() => {
+          document.cookie = "loggedIn=";
+          window.location.replace("/login");
+        }}
+      >
+        Logout
+      </button>
+      <BillsTable bills={bills} />
+      <AddBill />
+    </div>
+  );
+};
 
 export default Dashboard;
-
-// functional component not working due to node version???
-// export default function Dashboard() {
-//   const [bills, setBills] = useState([]);
-
-//   useEffect(() => {
-//     axios.get(`${URL}/bills`).then((res) => setBills(res.data));
-//   }, []);
-
-//   return (
-//     <div>
-//       <h1>Dashboard Component</h1>
-//       <ul>
-//           {bills.map((bill, index) => {
-//             return <li>{bill}</li>;
-//           })}
-//         </ul>
-//     </div>
-//   );
-// }
