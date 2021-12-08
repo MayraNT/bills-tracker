@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
+
+const URL = "https://bills-api-l88zfqgi7-mayrant.vercel.app/api";
 
 export default function Signup() {
   const [newUser, setNewUser] = useState({
@@ -27,18 +29,21 @@ export default function Signup() {
     // URL to server goes in the quotes where /user is
     // add /user to end of URL or whatever works with mine/signup
     // URL - https://bills-api-l88zfqgi7-mayrant.vercel.app/api
-    axios.post('/user', {
-      first_name: newUser.first_name,
-      last_name: newUser.last_name,
-      email: newUser.email,
-      password: newUser.password
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    axios
+      .post(`${URL}/signup`, {
+        first_name: newUser.first_name,
+        last_name: newUser.last_name,
+        email: newUser.email,
+        password: newUser.password,
+      })
+      .then(function (response) {
+        console.log(response);
+        document.cookie = "loggedIn=true;";
+        window.location.replace("/dashboard");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
     setNewUser({
       first_name: "",
@@ -53,7 +58,7 @@ export default function Signup() {
       <p>Signup Component</p>
       <div className="form">
         <form onSubmit={(e) => handleSignup(e)}>
-        <input
+          <input
             required
             type="text"
             name="first_name"
@@ -92,12 +97,9 @@ export default function Signup() {
           <button type="submit">Submit</button>
         </form>
       </div>
-      {/* <button>
-        <Link to="/dashboard">Submit</Link>
-      </button>
       <button>
         <Link to="/">Home</Link>
-      </button> */}
+      </button>
     </div>
   );
 }

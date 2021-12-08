@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
+
+const URL = "https://bills-api-l88zfqgi7-mayrant.vercel.app/api";
 
 export default function Login() {
   const [user, setUser] = useState({
@@ -25,16 +27,19 @@ export default function Login() {
     // URL to server goes in the quotes where /user is
     // add /user to end of URL or whatever works with mine/login
     // URL - https://bills-api-l88zfqgi7-mayrant.vercel.app/api
-    axios.post('/user', {
-      email: user.email,
-      password: user.password
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    axios
+      .post(`${URL}/users`, {
+        email: user.email,
+        password: user.password,
+      })
+      .then(function (response) {
+        console.log(response);
+        document.cookie = "loggedIn=true;";
+        window.location.replace("/dashboard");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
 
     setUser({
       email: "",
@@ -68,12 +73,9 @@ export default function Login() {
           <button type="submit">Login</button>
         </form>
       </div>
-      {/* <button>
-        <Link to="/dashboard">Submit</Link>
-      </button>
       <button>
         <Link to="/">Home</Link>
-      </button> */}
+      </button>
     </div>
   );
 }
