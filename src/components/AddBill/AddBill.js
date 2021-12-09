@@ -1,142 +1,94 @@
-import React, { Component, Fragment } from "react";
-import {
-  Button,
-  TextField,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import URL from "../../api";
 
-class AddCar extends Component {
-  state = {
-    open: false,
+export default function AddBill() {
+  const [bill, setBill] = useState({
     name: "",
-    mpg: "",
-    cylinders: "",
-    horsepower: "",
+    due_day: "",
+    amount: "",
+    fixed_amount: "",
+  });
+
+  const handleChange = (e) => {
+    const newBill = { ...bill };
+    newBill[e.target.name] = e.target.value;
+    setBill(newBill);
   };
 
-  toggleDialog = () => this.setState({ open: !this.state.open });
-
-  handleTextChange = (e) => {
-    const newBill = { ...this.state };
-    newBill[e.target.id] = e.target.value;
-    this.setState(newBill);
-  };
-
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = { ...this.state };
-    delete payload.open;
-    console.log("THE CAR", payload);
-    console.log(this.props);
-    this.setState({ open: !this.state.open });
-    // add this.props.addCar(payload) function here
-    // also add this.setState to close the dialog
-  };
 
-  componentDidUpdate = (prevProps, prevState) => {
-    if (prevState.open !== this.state.open) {
-      this.setState({
-        name: "",
-        mpg: "",
-        cylinders: "",
-        horsepower: "",
+    axios
+      .post(`${URL}/bills`, {
+        name: bill.name,
+        due_day: bill.due_day,
+        amount: bill.amount,
+        fixed_amount: bill.fixed_amount,
+      })
+      .then(function (response) {
+        console.log(response);
+        // window.location.replace("/dashboard");
+      })
+      .catch(function (error) {
+        console.log(error);
       });
-    }
+
+    setBill({
+      name: "",
+      due_day: "",
+      amount: "",
+      fixed_amount: "",
+    });
   };
 
-  render() {
-    return (
-      <Fragment>
-        <div style={{ textAlign: "center" }}>
-          <h3>Add New Bill</h3>
-          <Button
-            variant="contained"
-            onClick={this.toggleDialog}
-          >
-            Add Bill
-          </Button>
-        </div>
-        <div>
-          <Dialog open={this.state.open} onClose={this.toggleDialog}>
-            <DialogTitle>Add New Car</DialogTitle>
-            <DialogContent>
-              <form
-                onSubmit={this.handleSubmit}
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "350px",
-                }}
-              >
-                <TextField
-                  id="name"
-                  placeholder="Name"
-                  value={this.state.name}
-                  onChange={this.handleTextChange}
-                  required
-                />
-                <TextField
-                  id="mpg"
-                  placeholder="Miles per gallon"
-                  value={this.state.mpg}
-                  onChange={this.handleTextChange}
-                  required
-                />
-                <TextField
-                  id="cylinders"
-                  placeholder="Cylinders"
-                  value={this.state.cylinders}
-                  onChange={this.handleTextChange}
-                  required
-                />
-                <TextField
-                  id="horsepower"
-                  placeholder="Horsepower"
-                  value={this.state.horsepower}
-                  onChange={this.handleTextChange}
-                  required
-                />
-                <br />
-                <Button variant="contained" color="primary" type="submit">
-                  Submit
-                </Button>
-              </form>
-            </DialogContent>
-          </Dialog>
-        </div>
-      </Fragment>
-    );
-  }
+  return (
+    <div>
+      <h2>Add a New Monthly Bill</h2>
+      <button>
+        <Link to="/dashboard">Back to Dashboard</Link>
+      </button>
+      <div className="form">
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <input
+            required
+            type="text"
+            name="name"
+            label="name"
+            placeholder="Name"
+            value={bill.name}
+            onChange={(e) => handleChange(e)}
+          ></input>
+          <input
+            required
+            type="text"
+            name="due_day"
+            label="due_day"
+            placeholder="What day of the month is this bill due?"
+            value={bill.due_day}
+            onChange={(e) => handleChange(e)}
+          ></input>
+          <input
+            required
+            type="text"
+            name="amount"
+            label="amount"
+            placeholder="Amount"
+            value={bill.amount}
+            onChange={(e) => handleChange(e)}
+          ></input>
+          <input
+            type="text"
+            name="fixed_amount"
+            label="fixed_amount"
+            placeholder="Is this bill the same amount every month?"
+            value={bill.fixed_amount}
+            onChange={(e) => handleChange(e)}
+          ></input>
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+  );
 }
-
-export default AddCar;
-
-// export default function AddCar() {
-//   const [bill, setBill] = useState({
-//     open: false,
-//     name: "",
-//     due_day: "",
-//     amount: "",
-//     fixed_amount: ""
-//  })
-
-//   toggleDialog = () => setBill({ open: !open });
-
-//   handleChange = (e) => {
-//     const newBill = { ...bill };
-//     newBill[e.target.id] = e.target.value;
-//     setBill(newBill);
-//   };
-
-//   handleSubmit = (e) => {
-//     e.preventDefault();
-//     const payload = { ...bill };
-//     delete payload.open;
-//     console.log("THE BILL", payload);
-//     console.log(props);
-//     setBill({ open: !open });
-//     // AXIOS.POST payload goes here
-//   };
-// }

@@ -1,28 +1,13 @@
 import React from "react";
-import { useState, useEffect, useCallback } from "react";
-import axios from "axios";
-import BillsTable from "../BillsTable/BillsTable";
-import AddBill from "../AddBill/AddBill";
+import { Link } from "react-router-dom";
 
-const URL = "https://bills-api-l88zfqgi7-mayrant.vercel.app/api";
+import BillsTable from "../BillsTable/BillsTable";
+import Banks from "../Banks.js/Banks";
 
 const Dashboard = () => {
-  const [bills, setBills] = useState([]);
-
-  const fetchBills = useCallback(async () => {
-    const response = await axios(`${URL}/bills`);
-    setBills(response.data);
-  }, []);
-
-  useEffect(() => {
-    fetchBills();
-  }, [fetchBills]);
-
-  console.log("BILLS list", bills);
-
   return (
     <div>
-      <h1>Dashboard Component</h1>
+      <h2>Monthly Bills Dashboard</h2>
       <button
         onClick={() => {
           document.cookie = "loggedIn=";
@@ -31,8 +16,11 @@ const Dashboard = () => {
       >
         Logout
       </button>
-      <BillsTable bills={bills} />
-      <AddBill />
+      <button>
+        <Link to="/add">Add New Bill</Link>
+      </button>
+      <BillsTable />
+      <Banks />
     </div>
   );
 };

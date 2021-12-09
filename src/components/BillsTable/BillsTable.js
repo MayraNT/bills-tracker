@@ -1,4 +1,6 @@
 import React from "react";
+import { useState, useEffect, useCallback } from "react";
+import axios from "axios";
 import {
   Table,
   TableBody,
@@ -9,10 +11,22 @@ import {
   Paper,
   Checkbox,
 } from "@mui/material";
+import URL from "../../api";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-export default function BillsTable({ bills }) {
+export default function BillsTable() {
+  const [bills, setBills] = useState([]);
+
+  const fetchBills = useCallback(async () => {
+    const response = await axios(`${URL}/bills`);
+    setBills(response.data);
+  }, []);
+
+  useEffect(() => {
+    fetchBills();
+  }, [fetchBills]);
+
   return (
     <div>
       <TableContainer component={Paper}>
