@@ -1,9 +1,7 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-
-const URL = "https://bills-api-l88zfqgi7-mayrant.vercel.app/api";
+import URL from "../../api";
 
 export default function Login() {
   const [user, setUser] = useState({
@@ -20,15 +18,8 @@ export default function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // THIS IS WHERE WE SEND DATA TO SERVER
-    // NPM AXIOS IS AN OPTION (post request)
-
-    // copied over from npm axios docs
-    // URL to server goes in the quotes where /user is
-    // add /user to end of URL or whatever works with mine/login
-    // URL - https://bills-api-l88zfqgi7-mayrant.vercel.app/api
     axios
-      .post(`${URL}/users`, {
+      .post(`${URL}/login`, {
         email: user.email,
         password: user.password,
       })
