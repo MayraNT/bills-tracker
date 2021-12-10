@@ -11,6 +11,7 @@ export default function AddBill() {
     due_day: "",
     amount: "",
     fixed_amount: "",
+    user_id: "",
   });
 
   const handleChange = (e) => {
@@ -18,7 +19,7 @@ export default function AddBill() {
     newBill[e.target.name] = e.target.value;
     setBill(newBill);
   };
-  
+
   // POST ATTEMPT WITH ASYNC/AWAIT
   // const handleSubmit = async (e) => {
   //   try {
@@ -52,25 +53,28 @@ export default function AddBill() {
     //   fixed_amount: null,
     // };
 
-    axios.post(`${URL}/bills`, {
-      name: bill.name,
-      due_day: bill.due_day,
-      amount: bill.amount,
-      fixed_amount: null,
-    })
-    .then(response => {
-      console.log(response)
-      // window.location.replace("/dashboard");
-    })
-    .catch(error => {
-      console.log(error)
-    })
+    axios
+      .post(`${URL}/bills`, {
+        name: bill.name,
+        due_day: bill.due_day,
+        amount: bill.amount,
+        fixed_amount: null,
+        user_id: null,
+      })
+      .then((response) => {
+        console.log(response);
+        // window.location.replace("/dashboard");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     setBill({
       name: "",
       due_day: "",
       amount: "",
       fixed_amount: "",
+      user_id: "",
     });
   };
 
