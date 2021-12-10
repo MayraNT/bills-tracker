@@ -5,6 +5,7 @@ import BillsTable from "../BillsTable/BillsTable";
 import Banks from "../Banks.js/Banks";
 
 const Dashboard = () => {
+  console.log("logged in user's email--", localStorage.getItem("user_email"));
   return (
     <div>
       <h2>Monthly Bills Dashboard</h2>

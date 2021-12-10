@@ -24,7 +24,8 @@ export default function Login() {
         password: user.password,
       })
       .then(function (response) {
-        console.log(response);
+        console.log(response)
+        localStorage.setItem("user_email", user.email);
         document.cookie = "loggedIn=true;";
         window.location.replace("/dashboard");
       })
