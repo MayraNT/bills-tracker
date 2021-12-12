@@ -76,7 +76,7 @@ export default function Signup() {
             ></input>
             <input
               required
-              type="text"
+              type="email"
               name="email"
               label="email"
               placeholder="Email"

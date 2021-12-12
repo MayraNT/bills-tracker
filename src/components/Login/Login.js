@@ -57,7 +57,7 @@ export default function Login() {
           <form onSubmit={(e) => handleLogin(e)} className={styles.loginForm}>
             <input
               required
-              type="text"
+              type="email"
               name="email"
               label="email"
               placeholder="Email"
