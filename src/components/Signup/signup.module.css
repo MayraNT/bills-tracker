@@ -1,0 +1,32 @@
+.main {
+  width: 100vw;
+}
+
+.container {
+  margin-top: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signupForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input {
+  margin: 5px;
+  width: 350px;
+  height: 35px;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 17px;
+}
+
+.main > a {
+  margin-left: 15px;
+}
+
+a:hover {
+  color: rgb(55, 179, 55);
+}

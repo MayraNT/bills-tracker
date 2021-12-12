@@ -11,7 +11,9 @@ import {
   Paper,
   Checkbox,
 } from "@mui/material";
+
 import URL from "../../api";
+import styles from "./billsTable.module.css";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -30,13 +32,14 @@ export default function BillsTable() {
   return (
     <div>
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell align="center">Due</TableCell>
               <TableCell>Bill Name</TableCell>
               <TableCell align="left">Amount</TableCell>
               <TableCell align="center">Paid</TableCell>
+              <TableCell align="center">Edit</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -52,6 +55,11 @@ export default function BillsTable() {
                 <TableCell align="left">{`$${bill.amount}`}</TableCell>
                 <TableCell align="center">
                   <Checkbox {...label} />
+                </TableCell>
+                <TableCell align="center">
+                  <a>
+                    <i class="fas fa-pen"></i>
+                  </a>
                 </TableCell>
               </TableRow>
             ))}

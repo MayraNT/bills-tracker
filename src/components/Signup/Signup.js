@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
 import URL from "../../api";
+import styles from "./signup.module.css";
 
 export default function Signup() {
   const [newUser, setNewUser] = useState({
@@ -29,8 +31,7 @@ export default function Signup() {
       })
       .then(function (response) {
         console.log(response);
-        document.cookie = "loggedIn=true;";
-        window.location.replace("/dashboard");
+        window.location.replace("/login");
       })
       .catch(function (error) {
         console.log(error);
@@ -45,52 +46,62 @@ export default function Signup() {
   };
 
   return (
-    <div>
-      <p>Signup Component</p>
-      <div className="form">
-        <form onSubmit={(e) => handleSignup(e)}>
-          <input
-            required
-            type="text"
-            name="first_name"
-            label="first_name"
-            placeholder="First Name"
-            value={newUser.first_name}
-            onChange={(e) => handleChange(e)}
-          ></input>
-          <input
-            required
-            type="text"
-            name="last_name"
-            label="last_name"
-            placeholder="Last Name"
-            value={newUser.last_name}
-            onChange={(e) => handleChange(e)}
-          ></input>
-          <input
-            required
-            type="text"
-            name="email"
-            label="email"
-            placeholder="Email"
-            value={newUser.email}
-            onChange={(e) => handleChange(e)}
-          ></input>
-          <input
-            required
-            type="password"
-            name="password"
-            label="password"
-            placeholder="Password"
-            value={newUser.password}
-            onChange={(e) => handleChange(e)}
-          ></input>
-          <button type="submit">Submit</button>
-        </form>
+    <div className={styles.main}>
+      <Link to="/">
+        <span>&#8592;</span> Back to Home
+      </Link>
+      <div className={styles.container}>
+        <p>
+          Create a New <strong>billy</strong> Account
+        </p>
+        <div>
+          <form onSubmit={(e) => handleSignup(e)} className={styles.signupForm}>
+            <input
+              required
+              type="text"
+              name="first_name"
+              label="first_name"
+              placeholder="First Name"
+              value={newUser.first_name}
+              onChange={(e) => handleChange(e)}
+            ></input>
+            <input
+              required
+              type="text"
+              name="last_name"
+              label="last_name"
+              placeholder="Last Name"
+              value={newUser.last_name}
+              onChange={(e) => handleChange(e)}
+            ></input>
+            <input
+              required
+              type="text"
+              name="email"
+              label="email"
+              placeholder="Email"
+              value={newUser.email}
+              onChange={(e) => handleChange(e)}
+            ></input>
+            <input
+              required
+              type="password"
+              name="password"
+              label="password"
+              placeholder="Password"
+              value={newUser.password}
+              onChange={(e) => handleChange(e)}
+            ></input>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+        <p>
+          Already have an account?{" "}
+          <Link to="/login">
+            Login <span>&#8594;</span>
+          </Link>
+        </p>
       </div>
-      <button>
-        <Link to="/">Home</Link>
-      </button>
     </div>
   );
 }

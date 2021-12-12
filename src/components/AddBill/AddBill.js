@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
 import URL from "../../api";
-const FormData = require("form-data");
-var qs = require("qs");
+import styles from "./addBill.module.css";
 
 export default function AddBill() {
   const [bill, setBill] = useState({
@@ -20,38 +20,8 @@ export default function AddBill() {
     setBill(newBill);
   };
 
-  // POST ATTEMPT WITH ASYNC/AWAIT
-  // const handleSubmit = async (e) => {
-  //   try {
-  //     const response = await axios.post(`${URL}/bills`, {
-  //       name: bill.name,
-  //       due_day: bill.due_day,
-  //       amount: bill.amount,
-  //       fixed_amount: bill.fixed_amount,
-  //     });
-  //     console.log(response)
-  //   } catch (e) {
-  //     console.log(e)
-  //   }
-  // }
-
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // POST ATTEMPT WITH FORMDATA
-    // const form = new FormData();
-    // form.append("name", bill.name);
-    // form.append("due_day", bill.due_day);
-    // form.append("amount", bill.amount);
-    // form.append("fixed_amount", null);
-
-    // POST ATTEMPT WITH QS
-    // let newBillInfo = {
-    //   name: bill.name,
-    //   due_day: bill.due_day,
-    //   amount: bill.amount,
-    //   fixed_amount: null,
-    // };
 
     axios
       .post(`${URL}/bills`, {
@@ -63,7 +33,7 @@ export default function AddBill() {
       })
       .then((response) => {
         console.log(response);
-        // window.location.replace("/dashboard");
+        window.location.replace("/dashboard");
       })
       .catch((error) => {
         console.log(error);
@@ -80,12 +50,18 @@ export default function AddBill() {
 
   return (
     <div>
-      <h2>Add a New Monthly Bill</h2>
-      <button>
-        <Link to="/dashboard">Back to Dashboard</Link>
-      </button>
-      <div className="form">
-        <form onSubmit={(e) => handleSubmit(e)}>
+      <div className={styles.header}>
+        <Link to="/dashboard">
+          <span>&#8592;</span> Back to Dashboard
+        </Link>
+        <h2 className={styles.appName}>
+            <i class="fas fa-dollar-sign"></i> billy
+        </h2>
+      </div>
+      <div className={styles.main}>
+        <h2>Add a New Monthly Bill</h2>
+        <form onSubmit={(e) => handleSubmit(e)} className={styles.addForm}>
+          <p>Name your bill.</p>
           <input
             required
             type="text"
@@ -95,21 +71,23 @@ export default function AddBill() {
             value={bill.name}
             onChange={(e) => handleChange(e)}
           ></input>
+          <p>What day of the month is it due?</p>
           <input
             required
             type="number"
             name="due_day"
             label="due_day"
-            placeholder="What day of the month is this bill due?"
+            placeholder="Select a number"
             value={bill.due_day}
             onChange={(e) => handleChange(e)}
           ></input>
+          <p>How much is it? Enter numbers and decimals only.</p>
           <input
             required
             type="text"
             name="amount"
             label="amount"
-            placeholder="Amount"
+            placeholder="ex. 24.75"
             value={bill.amount}
             onChange={(e) => handleChange(e)}
           ></input>
@@ -121,7 +99,10 @@ export default function AddBill() {
             value={bill.fixed_amount}
             onChange={(e) => handleChange(e)}
           ></input> */}
-          <button type="submit">Save</button>
+          <br/>
+          <div className={styles.buttonDiv}>
+            <button type="submit">Save</button>
+          </div>
         </form>
       </div>
     </div>

@@ -1,0 +1,57 @@
+body {
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.main {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.subContainer {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.titles {
+  width: 300px;
+  border-right: solid 0.5px black;
+}
+
+h1 {
+  margin: 0;
+  font-size: 80px;
+}
+
+.tag {
+  width: 600px;
+  font-style: italic;
+}
+
+div.titles > p {
+  margin-bottom: -10px;
+  margin-top: -10px;
+}
+
+.buttons {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  margin: 8px;
+  width: 150px;
+  font-family: "Nunito Sans", sans-serif;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}

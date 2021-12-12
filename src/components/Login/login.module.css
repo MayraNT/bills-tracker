@@ -1,0 +1,24 @@
+.main {
+  width: 100vw;
+}
+
+.container {
+  margin-top: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main > a {
+  margin-left: 15px;
+}
+
+.error {
+  color: red;
+}
