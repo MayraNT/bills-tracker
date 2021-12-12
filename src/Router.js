@@ -7,6 +7,7 @@ import Login from "./components/Login/Login";
 import Signup from "./components/Signup/Signup";
 import Dashboard from "./components/Dashboard/Dashboard";
 import AddBill from "./components/AddBill/AddBill";
+import BanksPage from "./components/Banks/BanksPage";
 
 const checkAuth = () => {
   const cookies = cookie.parse(document.cookie);
@@ -28,6 +29,10 @@ const Router = () => {
       <Route
         path="/add"
         element={checkAuth() ? <AddBill /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/banks"
+        element={checkAuth() ? <BanksPage /> : <Navigate to="/login" />}
       />
     </Routes>
   );
