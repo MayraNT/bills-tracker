@@ -54,7 +54,7 @@ const Dashboard = () => {
         <h2 className={styles.appName}>
           <i class="fas fa-dollar-sign"></i> billy
         </h2>
-        <BillsTable />
+        <BillsTable month={currentMonth} />
       </div>
     </div>
   );

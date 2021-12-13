@@ -37,7 +37,7 @@ export default function BanksFeature() {
           </li>
         ))}
       </ul>
-      <Link to="/add-bank">+ Add Favorite</Link>
+      <Link to="/add-bank"><i class="fas fa-plus-circle"></i>  Add Favorite</Link>
       <Link to="/banks" className={styles.searchLink}>
         Search for banks near you. <span>&#8594;</span>
       </Link>

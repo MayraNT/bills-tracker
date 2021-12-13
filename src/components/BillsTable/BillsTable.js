@@ -13,16 +13,30 @@ import {
   Checkbox,
   IconButton,
 } from "@mui/material";
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { withStyles } from "@mui/styles";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 import URL from "../../api";
 import styles from "./billsTable.module.css";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
+const CustomColorCheckbox = withStyles({
+  root: {
+    color: "gray",
+    "&$checked": {
+      color: "#85a340",
+    },
+  },
+  checked: {},
+})((props) => <Checkbox color="default" {...props} />);
 
-export default function BillsTable() {
+export default function BillsTable({ month }) {
   const [bills, setBills] = useState([]);
   const [actions, setActions] = useState(false);
+
+  const shortMonth = (month) => {
+    return month.toLowerCase().slice(0, 3)
+  }
 
   const fetchBills = useCallback(async () => {
     const response = await axios(`${URL}/bills`);
@@ -50,13 +64,39 @@ export default function BillsTable() {
       <TableContainer component={Paper}>
         <Table aria-label="simple table">
           <TableHead>
-            <TableRow>
-              <TableCell align="center">Paid</TableCell>
-              <TableCell align="left">Due</TableCell>
-              <TableCell>Bill</TableCell>
-              <TableCell>Amount</TableCell>
-              {actions === true && <TableCell align="center">Delete</TableCell>}
-              <TableCell align="center">Actions</TableCell>
+            <TableRow sx={{ backgroundColor: "rgba(142, 202, 142, 0.116)" }}>
+              <TableCell
+                align="center"
+                sx={{ fontWeight: "bold", fontFamily: "Nunito Sans" }}
+              >
+                paid
+              </TableCell>
+              <TableCell
+                align="left"
+                sx={{ fontWeight: "bold", fontFamily: "Nunito Sans" }}
+              >
+                due {shortMonth(month)}
+              </TableCell>
+              <TableCell sx={{ fontWeight: "bold", fontFamily: "Nunito Sans" }}>
+                bill
+              </TableCell>
+              <TableCell sx={{ fontWeight: "bold", fontFamily: "Nunito Sans" }}>
+                amount
+              </TableCell>
+              {actions === true && (
+                <TableCell
+                  align="center"
+                  sx={{ fontWeight: "bold", fontFamily: "Nunito Sans" }}
+                >
+                  delete
+                </TableCell>
+              )}
+              <TableCell
+                align="center"
+                sx={{ fontWeight: "bold", fontFamily: "Nunito Sans" }}
+              >
+                actions
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -66,7 +106,7 @@ export default function BillsTable() {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell align="center">
-                  <Checkbox {...label} style={{ color: 'secondary'}} />
+                  <CustomColorCheckbox {...label} />
                 </TableCell>
                 <TableCell align="left">{bill.due_day}</TableCell>
                 <TableCell component="th" scope="row">
@@ -80,7 +120,7 @@ export default function BillsTable() {
                       className={styles.delete}
                       aria-label="delete"
                     >
-                      <DeleteForeverIcon className={styles.delete}/>
+                      <DeleteForeverIcon className={styles.delete} />
                     </IconButton>
                   </TableCell>
                 )}
@@ -89,7 +129,9 @@ export default function BillsTable() {
                     className={styles.actionsBtn}
                     onClick={() => setActions(!actions)}
                   >
-                    <span style={{ color: "#8FBC8F" }}><i class="fas fa-ellipsis-v"></i></span>
+                    <span style={{ color: "gray" }}>
+                      <i class="fas fa-ellipsis-v"></i>
+                    </span>
                   </button>
                 </TableCell>
               </TableRow>

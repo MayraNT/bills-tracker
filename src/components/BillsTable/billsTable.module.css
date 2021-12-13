@@ -5,12 +5,12 @@
   background-color: white;
 }
 
-.actionsIcon {
-  color: green;
+.actionsBtn:hover, .delete:hover {
+  border: none;
+  box-shadow: none;
 }
 
-.edit,
 .delete {
   width: 50px;
-  color: #A52A2A;
+  color: #a52a2a;
 }
