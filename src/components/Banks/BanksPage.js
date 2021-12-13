@@ -107,7 +107,7 @@ export default function BanksPage() {
               )}
             </PlacesAutocomplete>
           </div>
-          <p>Or click on a bank from your list to go directly to their website.</p>
+          <p>Go to your favorites' websites.</p>
           <ul className={styles.banksList}>
             {banks.map((bank) => (
               <li key={bank.id} className={styles.listItem}>

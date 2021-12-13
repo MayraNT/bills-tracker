@@ -19,9 +19,15 @@ export default function BanksFeature() {
 
   return (
     <div className={styles.container}>
-      <h4>
-        <i class="fas fa-university"></i> Your Banks
-      </h4>
+      <div>
+        <h4>
+          <i class="fas fa-university"></i> Quick Links
+        </h4>
+        <p>
+          Click on a bank from your favorites list to go to directly to its
+          website.
+        </p>
+      </div>
       <ul className={styles.banksList}>
         {banks.map((bank) => (
           <li key={bank.id} className={styles.listItem}>
@@ -31,8 +37,9 @@ export default function BanksFeature() {
           </li>
         ))}
       </ul>
-      <Link to="/banks">
-        Search for banks nearby. <span>&#8594;</span>
+      <Link to="/add-bank">+ Add Favorite</Link>
+      <Link to="/banks" className={styles.searchLink}>
+        Search for banks near you. <span>&#8594;</span>
       </Link>
     </div>
   );
