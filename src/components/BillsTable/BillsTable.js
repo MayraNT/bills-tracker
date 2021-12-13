@@ -36,10 +36,9 @@ export default function BillsTable() {
           <TableHead>
             <TableRow>
               <TableCell align="center">Due</TableCell>
-              <TableCell>Bill Name</TableCell>
+              <TableCell>Bill</TableCell>
               <TableCell align="left">Amount</TableCell>
               <TableCell align="center">Paid</TableCell>
-              <TableCell align="center">Edit</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -55,11 +54,6 @@ export default function BillsTable() {
                 <TableCell align="left">{`$${bill.amount}`}</TableCell>
                 <TableCell align="center">
                   <Checkbox {...label} />
-                </TableCell>
-                <TableCell align="center">
-                  <a>
-                    <i class="fas fa-pen"></i>
-                  </a>
                 </TableCell>
               </TableRow>
             ))}

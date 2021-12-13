@@ -5,6 +5,10 @@
 
 .sideDiv {
   grid-column: 1/2;
+  /* background-color: rgb(67, 167, 67); */
+  background-image: linear-gradient(rgb(133, 226, 133), rgb(2, 117, 2));
+  box-shadow: 1px 1px 5px rgb(146, 146, 146);
+  z-index: 1;
 }
 
 .mainDiv {
@@ -13,4 +17,9 @@
 
 .appName {
   text-align: end;
+}
+
+.greeting {
+  padding-left: 20px;
+  padding-top: 10px;
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import BillsTable from "../BillsTable/BillsTable";
-import Banks from "../Banks.js/Banks";
+import BanksFeature from "../Banks/BanksFeature";
 import styles from "./dashboard.module.css";
 
 const Dashboard = () => {
@@ -10,7 +10,7 @@ const Dashboard = () => {
   return (
     <div className={styles.container}>
       <div className={styles.sideDiv}>
-        <h3>
+        <h3 className={styles.greeting}>
           Hi, {localStorage.getItem("user_email")}!
           <br />
           Welcome to your Dashboard.
@@ -18,7 +18,7 @@ const Dashboard = () => {
         <Link to="/add">
           <button>Add New Bill</button>
         </Link>
-        <Banks />
+        <BanksFeature />
         <button
           onClick={() => {
             document.cookie = "loggedIn=";
