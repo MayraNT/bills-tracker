@@ -1,3 +1,55 @@
 .main {
   height: 100vh;
 }
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.appName {
+  margin-top: 0;
+}
+
+.container {
+  display: flex;
+}
+
+.mapSection {
+  width: 60vw;
+  margin-right: 3%;
+}
+
+.searchSection {
+  width: 40vw;
+  padding-left: 3%;
+  padding-right: 1%;
+}
+
+.subContainer {
+  height: 200px;
+}
+
+.searchInput {
+  margin: 0;
+}
+
+.banksList {
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+}
+
+.searchSection > p {
+  margin-top: 100px;
+}
+
+.listItem {
+  padding-right: 25px;
+  text-decoration: overline;
+}
+
+.listItem:hover {
+  text-decoration: underline;
+}
