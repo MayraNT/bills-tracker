@@ -53,7 +53,7 @@ export default function Signup() {
       </Link>
       <div className={styles.container}>
         <p>
-          Create a New <strong>billy</strong> Account
+          Create a New <span className={styles.strongBilly}><strong>billy</strong></span> Account
         </p>
         <div>
           <form onSubmit={(e) => handleSignup(e)} className={styles.signupForm}>
