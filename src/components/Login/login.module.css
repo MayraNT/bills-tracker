@@ -15,10 +15,18 @@
   align-items: center;
 }
 
+.strongBilly {
+  color: #85a340;
+}
+
 .main > a {
   margin-left: 15px;
 }
 
 .error {
   color: red;
+}
+
+.spacerDiv {
+  height: 15px;
 }

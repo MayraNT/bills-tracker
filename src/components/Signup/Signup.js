@@ -47,6 +47,7 @@ export default function Signup() {
 
   return (
     <div className={styles.main}>
+      <div className={styles.spacerDiv}></div>
       <Link to="/">
         <span>&#8592;</span> Back to Home
       </Link>

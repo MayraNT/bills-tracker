@@ -27,6 +27,6 @@ input {
   margin-left: 15px;
 }
 
-a:hover {
-  color: rgb(55, 179, 55);
+.spacerDiv {
+  height: 15px;
 }

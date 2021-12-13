@@ -46,12 +46,13 @@ export default function Login() {
 
   return (
     <div className={styles.main}>
+      <div className={styles.spacerDiv}></div>
       <Link to="/">
         <span>&#8592;</span> Back to Home
       </Link>
       <div className={styles.container}>
         <p>
-          Login to your <strong>billy</strong> Account
+          Login to your <span className={styles.strongBilly}><strong>billy</strong></span> Account
         </p>
         <div>
           <form onSubmit={(e) => handleLogin(e)} className={styles.loginForm}>

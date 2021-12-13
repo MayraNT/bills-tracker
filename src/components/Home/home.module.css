@@ -24,7 +24,8 @@ body {
   border-right: solid 0.5px black;
 }
 
-.mainTitle {
+.mainTitle,
+a:hover {
   color: #85a340;
 }
 
@@ -74,6 +75,5 @@ button:hover {
 a {
   text-decoration: none;
   color: black;
+  transition: ease 0.2s;
 }
-
-/* <span className={styles.strongBilly}> */
