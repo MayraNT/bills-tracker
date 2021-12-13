@@ -20,9 +20,18 @@
   justify-content: space-between;
 }
 
+.header > a {
+  margin-left: 15px;
+}
+
+.spacerDiv {
+  height: 15px;
+}
+
 .appName {
   margin-top: 0;
-  text-align: end;
+  margin-right: 20px;
+  color: #85a340;
 }
 
 .addressInput {

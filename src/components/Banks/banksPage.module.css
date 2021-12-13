@@ -53,3 +53,16 @@
 .listItem:hover {
   text-decoration: underline;
 }
+
+.spacerDiv {
+  height: 15px;
+}
+
+.header > a {
+  margin-left: 15px;
+}
+
+.appName {
+  margin-right: 20px;
+  color: #85a340;
+}

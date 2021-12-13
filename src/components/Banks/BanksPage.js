@@ -55,6 +55,7 @@ export default function BanksPage() {
 
   return (
     <div className={styles.main}>
+      <div className={styles.spacerDiv}></div>
       <div className={styles.header}>
         <Link to="/dashboard">
           <span>&#8592;</span> Back to Dashboard
@@ -90,7 +91,7 @@ export default function BanksPage() {
                     {loading && <div>Loading...</div>}
                     {suggestions.map((suggestion, i) => {
                       const style = {
-                        backgroundColor: suggestion.active ? "#c5e1a5" : "#fff",
+                        backgroundColor: suggestion.active ? "#85a34086" : "#fff",
                         cursor: "pointer",
                       };
                       return (
