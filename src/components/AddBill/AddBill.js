@@ -50,6 +50,7 @@ export default function AddBill() {
 
   return (
     <div>
+      <div className={styles.spacerDiv}></div>
       <div className={styles.header}>
         <Link to="/dashboard">
           <span>&#8592;</span> Back to Dashboard
