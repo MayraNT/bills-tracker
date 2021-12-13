@@ -9,12 +9,12 @@ export default function Home() {
       <div className={styles.subContainer}>
         <div className={styles.titles}>
           <p>hello from</p>
-          <h1>billy</h1>
+          <h1 className={styles.mainTitle}>billy</h1>
           <p>your buddy for bills</p>
         </div>
         <div className={styles.buttons}>
           <Link to="/login">
-            <button>Login</button>
+            <button variant="contained" size="small" className={styles.button5}>Login</button>
           </Link>
           <Link to="/signup">
             <button>Create a New Account</button>

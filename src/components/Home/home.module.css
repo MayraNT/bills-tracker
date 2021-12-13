@@ -12,6 +12,7 @@ body {
 }
 
 .subContainer {
+  margin-top: 10%;
   height: 200px;
   display: flex;
   justify-content: center;
@@ -23,12 +24,17 @@ body {
   border-right: solid 0.5px black;
 }
 
+.mainTitle {
+  color: #85a340;
+}
+
 h1 {
   margin: 0;
   font-size: 80px;
 }
 
 .tag {
+  margin-top: 2%;
   width: 600px;
   font-style: italic;
 }
@@ -47,12 +53,27 @@ div.titles > p {
 
 button {
   margin: 8px;
-  width: 150px;
+  width: 170px;
+  border: solid 0.5px black;
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.493);
+  color: white;
   font-family: "Nunito Sans", sans-serif;
+  font-size: 15px;
   cursor: pointer;
+  transition: ease 0.2s;
+}
+
+button:hover {
+  background-color: white;
+  color: black;
+  border: solid 0.5px #85a340;
+  box-shadow: 1px 1px 3px #85a340;
 }
 
 a {
   text-decoration: none;
   color: black;
 }
+
+/* <span className={styles.strongBilly}> */
